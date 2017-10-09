@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/minhajuddinkhan/xplr/endpoints"
 	"github.com/skratchdot/open-golang/open"
 	"github.com/spf13/cobra"
 )
@@ -25,11 +26,12 @@ func Root() *cobra.Command {
 				fmt.Println("No Arguments?")
 				return
 			}
-			articles := Fetch(args)
-			for _, article := range articles {
-				fmt.Println(article)
-				open.Run(article)
-
+			if args[0] == "search" {
+				articles, _ := endpoints.Fetch(args[1:])
+				for _, article := range articles {
+					fmt.Println(article)
+					open.Run(article)
+				}
 			}
 
 		},
