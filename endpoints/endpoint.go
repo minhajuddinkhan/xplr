@@ -5,8 +5,8 @@ var (
 )
 
 //Fetch fetches data from respective endpoints
-func Fetch() ([]string, error) {
+func Fetch(args []string) ([]string, error) {
 
-	articles, _ := hackernoon.Fetch()
+	articles, _ := hackernoon.Fetch(args)
 	return articles, nil
 }
