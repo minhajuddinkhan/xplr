@@ -1,24 +1,41 @@
-package main
+package xplr
 
 import (
-	"os"
-	"time"
-
 	"github.com/fatih/color"
-	"github.com/minhajuddinkhan/xplr/cmd"
+	"github.com/minhajuddinkhan/xplr/endpoints"
+	"github.com/skratchdot/open-golang/open"
+	"github.com/spf13/cobra"
 )
 
-func main() {
+func NewExplorer() *cobra.Command {
 
-	t1 := time.Now()
-	err := cmd.Root().Execute()
-	t2 := t1.Sub(time.Now())
+	return &cobra.Command{
+		Use:   "explorer",
+		Short: "xplr is a cli that helps you get cool tech articles",
+		Long: `xplr is a cli that helps you get cool tech articles
+		* hackernoon
+		* medium
+		etc
+		`,
+		Run: func(cmd *cobra.Command, args []string) {
+			// Do Stuff Here
 
-	if err != nil {
-		color.New(color.FgRed).Println("Oops!", err)
-		os.Exit(1)
-	} else {
-		c := color.New(color.FgWhite).Add(color.Bold)
-		c.Println("\nExecution time:: ", t2)
+			if len(args) == 0 {
+				c := color.New(color.FgRed).Add(color.Bold)
+				c.Println("No Arguments?")
+				return
+			}
+			c := make(chan []string)
+			go endpoints.Fetch(args, c)
+			articles := <-c
+			for _, article := range articles {
+
+				c := color.New(color.FgHiYellow).Add(color.Bold)
+				c.Println("endpoints: ", article)
+				open.Run(article)
+			}
+
+		},
 	}
+
 }
