@@ -4,12 +4,14 @@ package endpoints
 type Google struct {
 }
 
-//Fetch fetches articles from hackernoon
-func (h *Google) Fetch(args []string) ([]string, error) {
+var (
+	str string
+)
 
-	return []string{
-		"https://google.com/search?q=" + h.formatQuery(args),
-	}, nil
+//Fetch fetches articles from hackernoon
+func (h *Google) Fetch(args []string, query *[]string) {
+
+	*query = append(*query, "https://google.com/search?q="+h.formatQuery(args))
 }
 
 func (h *Google) formatQuery(args []string) string {

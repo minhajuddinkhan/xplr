@@ -18,7 +18,7 @@ func main() {
 		color.New(color.FgRed).Println("Oops!", err)
 		os.Exit(1)
 	} else {
-		c := color.New(color.FgGreen).Add(color.Bold)
+		c := color.New(color.FgWhite).Add(color.Bold)
 		c.Println("\nExecution time:: ", t2)
 	}
 }

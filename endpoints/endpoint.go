@@ -1,24 +1,22 @@
 package endpoints
 
 var (
-	hackernoon = Hackernoon{}
-	google     = Google{}
+	hackernoon    = Hackernoon{}
+	google        = Google{}
+	stackOverflow = StackOverflow{}
 )
+
+type Endpoint interface {
+	Fetch([]string, *string) ([]string, error)
+}
 
 //Fetch fetches data from respective endpoints
 func Fetch(args []string) ([]string, error) {
 
-	h, _ := hackernoon.Fetch(args)
-	g, _ := google.Fetch(args)
-	var articles []string
+	var result []string
+	hackernoon.Fetch(args, &result)
+	google.Fetch(args, &result)
+	stackOverflow.Fetch(args, &result)
 
-	for _, val := range h {
-		articles = append(articles, val)
-	}
-
-	for _, val := range g {
-		articles = append(articles, val)
-	}
-
-	return articles, nil
+	return result, nil
 }

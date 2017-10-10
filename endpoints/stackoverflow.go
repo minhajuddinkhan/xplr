@@ -1,16 +1,16 @@
 package endpoints
 
 //Hackernoon structure
-type Hackernoon struct {
+type StackOverflow struct {
 }
 
 //Fetch fetches articles from hackernoon
-func (h *Hackernoon) Fetch(args []string, query *[]string) {
-	*query = append(*query, "https://hackernoon.com/search?q="+h.formatQuery(args))
+func (h *StackOverflow) Fetch(args []string, query *[]string) {
 
+	*query = append(*query, "https://stackoverflow.com/search?q="+h.formatQuery(args))
 }
 
-func (h *Hackernoon) formatQuery(args []string) string {
+func (h *StackOverflow) formatQuery(args []string) string {
 	var query string
 	for i, argument := range args {
 
