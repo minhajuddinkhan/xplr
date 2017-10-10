@@ -26,7 +26,7 @@ func Root() *cobra.Command {
 				fmt.Println("No Arguments?")
 				return
 			}
-			articles, _ := endpoints.Fetch(args[1:])
+			articles, _ := endpoints.Fetch(args)
 			for _, article := range articles {
 				fmt.Println(article)
 				open.Run(article)
