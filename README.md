@@ -11,4 +11,4 @@
 
 ### Use case?
 
-###### getting error on your cmd? just copy and ```xplr``` it! :wink:
+###### Getting error on your cmd? just copy and ```xplr``` it! :wink:
