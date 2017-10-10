@@ -1,8 +1,7 @@
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/fatih/color"
 	"github.com/minhajuddinkhan/xplr/endpoints"
 	"github.com/skratchdot/open-golang/open"
 	"github.com/spf13/cobra"
@@ -23,12 +22,15 @@ func Root() *cobra.Command {
 			// Do Stuff Here
 
 			if len(args) == 0 {
-				fmt.Println("No Arguments?")
+				c := color.New(color.FgRed).Add(color.Bold)
+				c.Println("No Arguments?")
 				return
 			}
 			articles, _ := endpoints.Fetch(args)
 			for _, article := range articles {
-				fmt.Println(article)
+
+				c := color.New(color.FgHiYellow).Add(color.Bold)
+				c.Println("endpoints: ", article)
 				open.Run(article)
 			}
 

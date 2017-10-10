@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"time"
 
+	"github.com/fatih/color"
 	"github.com/minhajuddinkhan/xplr/cmd"
 )
 
@@ -15,9 +15,10 @@ func main() {
 	t2 := t1.Sub(time.Now())
 
 	if err != nil {
-		fmt.Errorf("error:", err)
+		color.New(color.FgRed).Println("Oops!", err)
 		os.Exit(1)
 	} else {
-		fmt.Println("Execution time/ ", t2)
+		c := color.New(color.FgGreen).Add(color.Bold)
+		c.Println("\nExecution time:: ", t2)
 	}
 }
