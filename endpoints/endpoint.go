@@ -13,10 +13,10 @@ type Endpoint interface {
 //Fetch fetches data from respective endpoints
 func Fetch(args []string) ([]string, error) {
 
-	var result []string
-	hackernoon.Fetch(args, &result)
-	google.Fetch(args, &result)
-	stackOverflow.Fetch(args, &result)
+	c := make(chan string)
+	go hackernoon.Fetch(args, c)
+	go google.Fetch(args, c)
+	go stackOverflow.Fetch(args, c)
 
-	return result, nil
+	return []string{<-c, <-c, <-c}, nil
 }

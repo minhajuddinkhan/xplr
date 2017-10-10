@@ -5,8 +5,9 @@ type Hackernoon struct {
 }
 
 //Fetch fetches articles from hackernoon
-func (h *Hackernoon) Fetch(args []string, query *[]string) {
-	*query = append(*query, "https://hackernoon.com/search?q="+h.formatQuery(args))
+func (h *Hackernoon) Fetch(args []string, c chan string) {
+
+	c <- "https://hackernoon.com/search?q=" + h.formatQuery(args)
 
 }
 

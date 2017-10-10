@@ -9,9 +9,9 @@ var (
 )
 
 //Fetch fetches articles from hackernoon
-func (h *Google) Fetch(args []string, query *[]string) {
+func (h *Google) Fetch(args []string, c chan string) {
 
-	*query = append(*query, "https://google.com/search?q="+h.formatQuery(args))
+	c <- "https://google.com/search?q=" + h.formatQuery(args)
 }
 
 func (h *Google) formatQuery(args []string) string {

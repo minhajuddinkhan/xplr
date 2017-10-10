@@ -5,9 +5,10 @@ type StackOverflow struct {
 }
 
 //Fetch fetches articles from hackernoon
-func (h *StackOverflow) Fetch(args []string, query *[]string) {
+func (h *StackOverflow) Fetch(args []string, c chan string) {
 
-	*query = append(*query, "https://stackoverflow.com/search?q="+h.formatQuery(args))
+	c <- "https://stackoverflow.com/search?q=" + h.formatQuery(args)
+
 }
 
 func (h *StackOverflow) formatQuery(args []string) string {
