@@ -3,7 +3,7 @@
 
 install with go get and make sure you have $GOPATH/bin in your path 
  
-``` go get github.com/minhajuddinkhan/xplr ```
+``` $ go get github.com/minhajuddinkhan/xplr ```
 
 
-```xplr nodejs vs java``` -> Opens google search and blogs on hackernoon.
+```$ xplr nodejs vs java``` -> Opens google search and blogs on hackernoon.
