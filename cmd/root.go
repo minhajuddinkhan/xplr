@@ -26,12 +26,10 @@ func Root() *cobra.Command {
 				fmt.Println("No Arguments?")
 				return
 			}
-			if args[0] == "search" {
-				articles, _ := endpoints.Fetch(args[1:])
-				for _, article := range articles {
-					fmt.Println(article)
-					open.Run(article)
-				}
+			articles, _ := endpoints.Fetch(args[1:])
+			for _, article := range articles {
+				fmt.Println(article)
+				open.Run(article)
 			}
 
 		},

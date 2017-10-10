@@ -2,21 +2,22 @@ package endpoints
 
 import "fmt"
 
-//Hackernoon structure
-type Hackernoon struct {
+//Google structure
+type Google struct {
 }
 
 //Fetch fetches articles from hackernoon
-func (h *Hackernoon) Fetch(args []string) ([]string, error) {
+func (h *Google) Fetch(args []string) ([]string, error) {
 
 	fmt.Println("fetching!")
 
 	return []string{
-		"https://hackernoon.com/search?q=" + h.formatQuery(args),
+		"https://google.com/search?q=" + h.formatQuery(args),
 	}, nil
 }
 
-func (h *Hackernoon) formatQuery(args []string) string {
+func (h *Google) formatQuery(args []string) string {
+
 	var query string
 	for i, argument := range args {
 
@@ -27,5 +28,4 @@ func (h *Hackernoon) formatQuery(args []string) string {
 		}
 	}
 	return query
-
 }
