@@ -4,19 +4,14 @@ var (
 	hackernoon    = Hackernoon{}
 	google        = Google{}
 	stackOverflow = StackOverflow{}
+	result        []string
 )
 
-type Endpoint interface {
-	Fetch([]string, *string) ([]string, error)
-}
-
 //Fetch fetches data from respective endpoints
-func Fetch(args []string) ([]string, error) {
+func Fetch(queryArgs []string, c chan []string) {
 
-	c := make(chan string)
-	go hackernoon.Fetch(args, c)
-	go google.Fetch(args, c)
-	go stackOverflow.Fetch(args, c)
-
-	return []string{<-c, <-c, <-c}, nil
+	hackernoon.Fetch(queryArgs, &result)
+	google.Fetch(queryArgs, &result)
+	stackOverflow.Fetch(queryArgs, &result)
+	c <- result
 }

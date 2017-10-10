@@ -26,7 +26,9 @@ func Root() *cobra.Command {
 				c.Println("No Arguments?")
 				return
 			}
-			articles, _ := endpoints.Fetch(args)
+			c := make(chan []string)
+			go endpoints.Fetch(args, c)
+			articles := <-c
 			for _, article := range articles {
 
 				c := color.New(color.FgHiYellow).Add(color.Bold)

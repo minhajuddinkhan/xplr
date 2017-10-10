@@ -5,17 +5,17 @@ type Hackernoon struct {
 }
 
 //Fetch fetches articles from hackernoon
-func (h *Hackernoon) Fetch(args []string, c chan string) {
+func (h *Hackernoon) Fetch(queries []string, result *[]string) {
 
-	c <- "https://hackernoon.com/search?q=" + h.formatQuery(args)
+	*result = append(*result, "https://hackernoon.com/search?q="+h.formatQuery(queries))
 
 }
 
-func (h *Hackernoon) formatQuery(args []string) string {
+func (h *Hackernoon) formatQuery(queries []string) string {
 	var query string
-	for i, argument := range args {
+	for i, argument := range queries {
 
-		if i == len(args)-1 {
+		if i == len(queries)-1 {
 			query += argument
 		} else {
 			query += argument + "+"
