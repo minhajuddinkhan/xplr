@@ -1,15 +1,11 @@
 package endpoints
 
-import "fmt"
-
 //Google structure
 type Google struct {
 }
 
 //Fetch fetches articles from hackernoon
 func (h *Google) Fetch(args []string) ([]string, error) {
-
-	fmt.Println("fetching!")
 
 	return []string{
 		"https://google.com/search?q=" + h.formatQuery(args),

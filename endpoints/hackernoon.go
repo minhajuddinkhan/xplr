@@ -1,16 +1,11 @@
 package endpoints
 
-import "fmt"
-
 //Hackernoon structure
 type Hackernoon struct {
 }
 
 //Fetch fetches articles from hackernoon
 func (h *Hackernoon) Fetch(args []string) ([]string, error) {
-
-	fmt.Println("fetching!")
-
 	return []string{
 		"https://hackernoon.com/search?q=" + h.formatQuery(args),
 	}, nil
