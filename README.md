@@ -3,7 +3,7 @@
 ### Install
 ######  ```go get``` and make sure you have ``` $GOPATH/bin ``` in your path 
  
-###### ``` $ go get github.com/minhajuddinkhan/xplr ```
+###### ``` $ go get github.com/minhajuddinkhan/xplr/cmd/xplr ```
 
 
  
